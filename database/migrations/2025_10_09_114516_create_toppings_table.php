@@ -11,21 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('usr_id');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('name'); 
+        Schema::create('toppings', function (Blueprint $table) {
+            $table->bigIncrements('tp_id');
+            $table->string('tp_name');
+            $table->decimal('tp_price', 10, 2);
+            $table->integer('tp_stock')->default(0);
+            $table->string('tp_image')->nullable();
             $table->timestamps();
         });
+        
     }
-    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('toppings');
     }
 };

@@ -11,21 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('usr_id');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('name'); 
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->bigIncrements('tr_id');
+            $table->decimal('tr_total_amount', 10, 2);
+            $table->decimal('tr_payment', 10, 2);
+            $table->decimal('tr_change', 10, 2);
+            $table->date('tr_date');
             $table->timestamps();
+
+
         });
+        
     }
-    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('transactions');
     }
 };
